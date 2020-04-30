@@ -1,4 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import SingleItem from '../SingleItem';
+
+import '../../App.css';
 
 export default class Leatherworker extends Component {
     constructor(props) {
@@ -8,9 +11,54 @@ export default class Leatherworker extends Component {
         }
     }
     render() {
+        const armor = this.state.shop.inventory[0].armor;
+        const weapons = this.state.shop.inventory[1].weapons;
+        const adventuring_gear = this.state.shop.inventory[2].adventuring_gear;
+        // const tools = this.state.shop.inventory[3].tools; I need to populate the API with some tools
+
+        const lightArmor = armor[0];
+        const mediumArmor = armor[1];
+        const shield = armor[2];
+
+        const simpleRW = weapons[0];
         return (
             <div>
                 <h2>{this.state.shop.name}</h2>
+                <div className="grid-container">
+                    {lightArmor.items.map((item, index) => {
+                        return (
+                            <SingleItem key={index} item={item}/>
+                        )
+                    })}
+                    {mediumArmor.items.map((item, index) => {
+                        return (
+                            <SingleItem key={index} item={item}/>
+                        )
+                    })}
+                    {shield.items.map((item, index) => {
+                        return (
+                            <SingleItem key={index} item={item}/>
+                        )
+                    })}
+                    {simpleRW.items.map((item, index) => {
+                        return (
+                            <SingleItem key={index} item={item}/>
+                        )
+                    })}
+                    {adventuring_gear.map((item, index) => {
+                        return (
+                            <SingleItem key={index} item={item}/>
+                        )
+                    })}
+                    {/* <h3>Tools</h3>
+                    {tools.map((item, index) => {
+                        return (
+                            <div key={index}>
+                                <p>{item.name}: {item.cost.quantity} {item.cost.unit}</p>
+                            </div>
+                        )
+                    })} */}
+                </div>
             </div>
         )
     }

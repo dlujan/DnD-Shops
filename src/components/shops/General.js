@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+// import {Link} from 'react-router-dom';
+import SingleItem from '../SingleItem';
+
+import '../../App.css';
 
 export default class General extends Component {
     constructor(props) {
@@ -8,9 +12,23 @@ export default class General extends Component {
         }
     }
     render() {
+        const adventuring_gear = this.state.shop.inventory[0].adventuring_gear;
+        const tools = this.state.shop.inventory[1].tools;
         return (
             <div>
                 <h2>{this.state.shop.name}</h2>
+                <div className="grid-container">
+                    {adventuring_gear.map((item, index) => {
+                        return (
+                            <SingleItem key={index} item={item}/>
+                        )
+                    })}
+                    {tools.map((item, index) => {
+                        return (
+                            <SingleItem key={index} item={item}/>
+                        )
+                    })}
+                </div>
             </div>
         )
     }
