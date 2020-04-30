@@ -25,7 +25,7 @@ import Custom from './components/Custom';
 
 import './App.css';
 
-let authenticated = false; //TEMPORARY
+let authenticated = false; // *****TEMPORARY***** the commented out code breaks everything idk why
 // const token = localStorage.FBIdToken;
 // if(token) {
 //   const decodedToken = jwtDecode(token);

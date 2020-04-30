@@ -14,7 +14,7 @@ export default class Leatherworker extends Component {
         const armor = this.state.shop.inventory[0].armor;
         const weapons = this.state.shop.inventory[1].weapons;
         const adventuring_gear = this.state.shop.inventory[2].adventuring_gear;
-        // const tools = this.state.shop.inventory[3].tools; I need to populate the API with some tools
+        const tools = this.state.shop.inventory[3].tools;
 
         const lightArmor = armor[0];
         const mediumArmor = armor[1];
@@ -50,14 +50,11 @@ export default class Leatherworker extends Component {
                             <SingleItem key={index} item={item}/>
                         )
                     })}
-                    {/* <h3>Tools</h3>
                     {tools.map((item, index) => {
                         return (
-                            <div key={index}>
-                                <p>{item.name}: {item.cost.quantity} {item.cost.unit}</p>
-                            </div>
+                            <SingleItem key={index} item={item}/>
                         )
-                    })} */}
+                    })}
                 </div>
             </div>
         )
