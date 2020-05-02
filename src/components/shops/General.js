@@ -20,12 +20,12 @@ export default class General extends Component {
                 <div className="grid-container">
                     {adventuring_gear.map((item, index) => {
                         return (
-                            <SingleItem key={index} item={item}/>
+                            <SingleItem key={index} item={item} color="lightgreen" rpgIcon="ra ra-lantern-flame ra-2x"/>
                         )
                     })}
                     {tools.map((item, index) => {
                         return (
-                            <SingleItem key={index} item={item}/>
+                            <SingleItem key={index} item={item} color="lightgreen" rpgIcon="ra ra-mining-diamonds ra-2x"/>
                         )
                     })}
                 </div>

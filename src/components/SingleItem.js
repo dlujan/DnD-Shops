@@ -1,6 +1,18 @@
-import React from 'react'
-
+import React from 'react';
+import 'rpg-awesome/css/rpg-awesome.min.css';
+import Texture from '../texture.jpg';
 export default function SingleItem(props) {
+
+    const itemStyle = () => {
+        return {
+            padding: '10px',
+            margin: '10px',
+            borderRadius: '3px',
+            boxShadow: '2px 2px 3px #361f11',
+            textAlign: 'center',
+            backgroundImage: `url(${Texture})`
+        }
+    }
     const {
         name,
         category,
@@ -11,8 +23,13 @@ export default function SingleItem(props) {
         speed,
         capacity,
         desc} = props.item;
+
     return (
-        <div style={itemStyle}>
+        <div style={itemStyle()}>
+            <div style={{textAlign: 'left'}}>
+                <i className={props.rpgIcon}></i>
+            </div>
+            <div>
             <h4>{name}</h4>
             <p>Category: {category}</p>
             <p>Cost: {cost.quantity} {cost.unit}</p>
@@ -36,14 +53,7 @@ export default function SingleItem(props) {
                 <p>Weight: {weight} lbs</p>
             )}
             {/* ADD A POPUP WITH MORE INFO AND COST ADJUST BUTTONS WHEN YOU CLICK ME */}
+            </div>
         </div>
     )
-}
-
-const itemStyle = {
-    padding: '10px',
-    margin: '10px',
-    borderRadius: '15px',
-    textAlign: 'center',
-    backgroundColor: 'lightgrey'
 }

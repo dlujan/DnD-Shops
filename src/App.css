@@ -1,7 +1,11 @@
-body {
-  margin: 0
-}
+@import url('https://fonts.googleapis.com/css2?family=Berkshire+Swash&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Marcellus+SC&display=swap');
 
+body {
+  margin: 0;
+  /* font-family: 'Berkshire Swash'; */
+  font-family: 'Marcellus SC', sans-serif;
+}
 .grid-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
