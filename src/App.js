@@ -4,10 +4,13 @@ import Navbar from './components/Navbar';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import jwtDecode from 'jwt-decode';
+import AuthRoute from './util/AuthRoute';
 
 // Redux
 import { Provider } from 'react-redux';
 import store from './redux/store';
+import { SET_AUTHENTICATED } from './redux/types';
+import { logoutUser, getUserData } from './redux/actions/userActions';
 
 // Components
 import General from './components/shops/General';
@@ -24,18 +27,20 @@ import Animals from './components/shops/Animals';
 import Custom from './components/Custom';
 
 import './App.css';
+import axios from 'axios';
 
-let authenticated = false; // *****TEMPORARY***** the commented out code breaks everything idk why
-// const token = localStorage.FBIdToken;
-// if(token) {
-//   const decodedToken = jwtDecode(token);
-//   if(decodedToken.exp * 1000 < Date.now()){
-//     window.location.href = '/login';
-//     authenticated = false;
-//   } else {
-//     authenticated = true;
-//   }
-// }
+const token = localStorage.FBIdToken;
+if(token) {
+  const decodedToken = jwtDecode(token);
+  if(decodedToken.exp * 1000 < Date.now()){
+    store.dispatch(logoutUser())
+    // window.location.href = '/login';
+  } else {
+    store.dispatch({ type: SET_AUTHENTICATED });
+    axios.defaults.headers.common['Authorization'] = token;
+    store.dispatch(getUserData());
+  }
+}
 
 class App extends React.Component {
   constructor(props) {
@@ -71,7 +76,7 @@ class App extends React.Component {
           <Provider store={store}>
           <HashRouter>
                 <div>
-                  <Navbar authenticated={authenticated}/>
+                  <Navbar/>
                 </div>
                 <div>
                 <Switch>

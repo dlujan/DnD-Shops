@@ -26,7 +26,7 @@ const useStyles = makeStyles({
     const classes = useStyles();
     const [state, setState] = React.useState({
       left: false,
-      isLoggedIn: props.authenticated
+      isLoggedIn: false
     });
 
     const toggleDrawer = (anchor, open) => (event) => {
