@@ -3,6 +3,7 @@ import { HashRouter, Switch, Route } from "react-router-dom";
 import Navbar from './components/Navbar';
 import Login from './components/Login';
 import Signup from './components/Signup';
+import Alert from './components/Alert';
 import jwtDecode from 'jwt-decode';
 
 // Redux
@@ -75,50 +76,51 @@ class App extends React.Component {
                   <div>
                     <Navbar/>
                   </div>
-                  <div>
-                  <Switch>
-                    <Route exact path="/login" render={(props) => <Login {...props}shops={this.state.shops}/>} />
-                  </Switch>
-                  <Switch>
-                    <Route exact path="/signup" render={(props) => <Signup {...props}shops={this.state.shops}/>} />
-                  </Switch>
-                  <Switch>
-                    <Route exact path="/" render={(props) => <General {...props}shops={this.state.shops}/>} />
-                  </Switch>
-                  <Switch>
-                    <Route exact path="/blacksmith" render={(props) => <Blacksmith {...props}shops={this.state.shops}/>} />
-                  </Switch>
-                  <Switch>
-                    <Route exact path="/leatherworker" render={(props) => <Leatherworker {...props}shops={this.state.shops}/>} />
-                  </Switch>
-                  <Switch>
-                    <Route exact path="/fletcher" render={(props) => <Fletcher {...props}shops={this.state.shops}/>} />
-                  </Switch>
-                  <Switch>
-                    <Route exact path="/tailor" render={(props) => <Tailor {...props}shops={this.state.shops}/>} />
-                  </Switch>
-                  <Switch>
-                    <Route exact path="/tavern" render={(props) => <Tavern {...props}shops={this.state.shops}/>} />
-                  </Switch>
-                  <Switch>
-                    <Route exact path="/arcane" render={(props) => <Arcane {...props}shops={this.state.shops}/>} />
-                  </Switch>
-                  <Switch>
-                    <Route exact path="/potions" render={(props) => <Potions {...props}shops={this.state.shops}/>} />
-                  </Switch>
-                  <Switch>
-                    <Route exact path="/temple" render={(props) => <Temple {...props}shops={this.state.shops}/>} />
-                  </Switch>
-                  <Switch>
-                    <Route exact path="/jeweler" render={(props) => <Jeweler {...props}shops={this.state.shops}/>} />
-                  </Switch>
-                  <Switch>
-                    <Route exact path="/animals" render={(props) => <Animals {...props}shops={this.state.shops}/>} />
-                  </Switch>
-                  <Switch>
-                    <Route exact path="/custom" render={(props) => <Custom {...props}shops={this.state.shops}/>} />
-                  </Switch>
-                  </div>
+                  <section>
+                    <Alert />
+                    <Switch>
+                      <Route exact path="/login" render={(props) => <Login {...props}shops={this.state.shops}/>} />
+                    </Switch>
+                    <Switch>
+                      <Route exact path="/signup" render={(props) => <Signup {...props}shops={this.state.shops}/>} />
+                    </Switch>
+                    <Switch>
+                      <Route exact path="/" render={(props) => <General {...props}shops={this.state.shops}/>} />
+                    </Switch>
+                    <Switch>
+                      <Route exact path="/blacksmith" render={(props) => <Blacksmith {...props}shops={this.state.shops}/>} />
+                    </Switch>
+                    <Switch>
+                      <Route exact path="/leatherworker" render={(props) => <Leatherworker {...props}shops={this.state.shops}/>} />
+                    </Switch>
+                    <Switch>
+                      <Route exact path="/fletcher" render={(props) => <Fletcher {...props}shops={this.state.shops}/>} />
+                    </Switch>
+                    <Switch>
+                      <Route exact path="/tailor" render={(props) => <Tailor {...props}shops={this.state.shops}/>} />
+                    </Switch>
+                    <Switch>
+                      <Route exact path="/tavern" render={(props) => <Tavern {...props}shops={this.state.shops}/>} />
+                    </Switch>
+                    <Switch>
+                      <Route exact path="/arcane" render={(props) => <Arcane {...props}shops={this.state.shops}/>} />
+                    </Switch>
+                    <Switch>
+                      <Route exact path="/potions" render={(props) => <Potions {...props}shops={this.state.shops}/>} />
+                    </Switch>
+                    <Switch>
+                      <Route exact path="/temple" render={(props) => <Temple {...props}shops={this.state.shops}/>} />
+                    </Switch>
+                    <Switch>
+                      <Route exact path="/jeweler" render={(props) => <Jeweler {...props}shops={this.state.shops}/>} />
+                    </Switch>
+                    <Switch>
+                      <Route exact path="/animals" render={(props) => <Animals {...props}shops={this.state.shops}/>} />
+                    </Switch>
+                    <Switch>
+                      <Route exact path="/custom" render={(props) => <Custom {...props}shops={this.state.shops}/>} />
+                    </Switch>
+                  </section>
               </HashRouter>
             </Provider>
         );

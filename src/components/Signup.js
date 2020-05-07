@@ -1,43 +1,42 @@
 import React, { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import  { setAlert } from '../actions/alert';
+import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 
-const Signup = () => {
+const Signup = ({ setAlert }) => {
     const [formData, setFormData] = useState({
-        name: '',
+        username: '',
         email: '',
         password: '',
-        password2: ''
+        confirmPassword: ''
     });
 
-    const { name, email, password, password2 } = formData;
+    const { username, email, password, confirmPassword } = formData;
 
     const onChange = event => setFormData({ ...formData, [event.target.name]: event.target.value});
 
     const onSubmit = async event => {
         event.preventDefault();
-        if (password !== password2) {
-            console.log('passwords do not match')
+        if (password !== confirmPassword) {
+            setAlert('passwords do not match', 'danger');
         } else {
             const newUser = {
-                name,
                 email,
-                password
+                password,
+                confirmPassword,
+                username
             }
-            try {
-                const config = {
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                }
-                const body = JSON.stringify(newUser);
-
-                const res = await axios.post();
-            } catch(err) {
-
-            }
+            axios.post('https://us-central1-dnd-shops.cloudfunctions.net/api/signup', newUser)
+                .then((res) => {
+                    console.log(res.data);
+                    localStorage.setItem(`FBIdToken`, `Bearer ${res.data.token}`);
+                })
+                .catch((err) => {
+                    console.error(err.response.data)
+                })
         }
     }
 
@@ -50,8 +49,8 @@ const Signup = () => {
                     <input 
                         type="text" 
                         placeholder="Name" 
-                        name="name" 
-                        value={name} 
+                        name="username" 
+                        value={username} 
                         onChange={event => onChange(event)}
                         required 
                     />
@@ -81,11 +80,11 @@ const Signup = () => {
                     <input
                         type="password"
                         placeholder="Confirm Password"
-                        name="password2"
+                        name="confirmPassword"
                         minLength="6"
-                        value={password2}
+                        value={confirmPassword}
                         onChange={event => onChange(event)}
-                        required
+                        
                     />
                 </div>
                 <input type="submit" value="Submit" />
@@ -95,6 +94,10 @@ const Signup = () => {
             </p>
         </Fragment>
     )
-}
+};
 
-export default Signup;
+Signup.propTypes = {
+    setAlert: PropTypes.func.isRequired,
+};
+
+export default connect(null, { setAlert })(Signup);

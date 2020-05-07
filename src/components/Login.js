@@ -1,150 +1,67 @@
-// import React, { Component } from 'react';
-// import {Link} from 'react-router-dom';
-// import withStyles from '@material-ui/core/styles/withStyles';
-// import PropTypes from 'prop-types';
+import React, { Fragment, useState } from 'react';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 
-// // Redux
-// import { connect } from 'react-redux';
-// import { loginUser } from '../redux/actions/userActions';
+import { connect } from 'react-redux';
 
-// import Grid from '@material-ui/core/Grid';
-// import Typography from '@material-ui/core/Typography';
-// import TextField from '@material-ui/core/TextField';
-// import Button from '@material-ui/core/Button';
-// import CircularProgress from '@material-ui/core/CircularProgress';
+const Login = () => {
+    const [formData, setFormData] = useState({
+        email: '',
+        password: ''
+    });
 
-// const styles = {
-//     form: {
-//         textAlign: 'center'
-//     },
-//     gridMid: {
-//         margin: '0 2.5rem'
-//     },
-//     pageTitle: {
-//         margin: '10px auto 10px auto'
-//     },
-//     textField: {
-//         margin: '10px auto 10px auto'
-//     },
-//     button: {
-//         margin: '18px 0',
-//         position: 'relative'
-//     },
-//     customError: {
-//         color: 'red',
-//         fontSize: '0.8rem',
-//         marginTop: 10
-//     },
-//     progress: {
-//         position: 'absolute'
-//     }
-// };
-// class Login extends Component {
-//     constructor() {
-//         super();
-//         this.state = {
-//             email: '',
-//             password: '',
-//             errors: {}
-//         }
-//     }
-//     componentWillReceiveProps(nextProps) {
-//         if (nextProps.UI.errors) {
-//             this.setState({ errors: nextProps.UI.errors});
-//         }
-//     }
-//     handleSubmit = (event) => {
-//         event.preventDefault();
-//         const userData = {
-//             email: this.state.email,
-//             password: this.state.password
-//         };
-//         this.props.loginUser(userData, this.props.history);
-//     }
-//     handleChange = (event) => {
-//         this.setState({
-//             [event.target.name]: event.target.value
-//         })
-//     }
+    const { email, password } = formData;
 
-//     render() {
-//         const {classes, UI: { loading }} = this.props;
-//         const{errors} = this.state;
+    const onChange = event => setFormData({ ...formData, [event.target.name]: event.target.value});
 
-//         return (
-//             <Grid container className={classes.form}>
-//                 <Grid item sm/>
-//                 <Grid item sm className={classes.gridMid}>
-//                     <p>img tag app icon goes here</p>
-//                     <Typography variant='h3' className={classes.pageTitle}>
-//                         Login
-//                     </Typography>
-//                     <form noValidate onSubmit={this.handleSubmit}>
-//                         <TextField 
-//                             id="email"
-//                             name="email"
-//                             type="email"
-//                             label="Email"
-//                             className={classes.textField}
-//                             helperText={errors.email}
-//                             error={errors.email ? true : false}
-//                             value={this.state.email}
-//                             onChange={this.handleChange}
-//                             fullWidth
-//                         />
-//                         <TextField 
-//                             id="password"
-//                             name="password"
-//                             type="password"
-//                             label="Password"
-//                             className={classes.textField} 
-//                             helperText={errors.password}
-//                             error={errors.password ? true : false}
-//                             value={this.state.password}
-//                             onChange={this.handleChange}
-//                             fullWidth
-//                         />
-//                         {errors.general && (
-//                             <Typography variant="body2" className={classes.customError}>
-//                                 {errors.general}
-//                             </Typography>
-//                         )}
-//                         <Button 
-//                             type="submit"
-//                             variant="contained"
-//                             color="primary"
-//                             className={classes.button}
-//                             disabled={loading}
-//                         >
-//                             Login
-//                             {loading && (
-//                                 <CircularProgress size={30} className={classes.progress}/>
-//                             )}
-//                         </Button>
-//                         <br/>
-//                         <small>Don't have an account? Sign up <Link to="/signup">here</Link></small>
-//                     </form>
-//                 </Grid>
-//                 <Grid item sm/>
-//             </Grid>
-//         )
-//     }
-// }
+    const onSubmit = async event => {
+        event.preventDefault();
+        const user = {
+            email,
+            password
+        }
+        axios.post('https://us-central1-dnd-shops.cloudfunctions.net/api/login', user)
+            .then((res) => {
+                console.log(res.data);
+                localStorage.setItem(`FBIdToken`, `Bearer ${res.data.token}`);
+            })
+            .catch((err) => {
+                console.error(err.response.data)
+            })
+    }
 
-// Login.propTypes = {
-//     classes: PropTypes.object.isRequired,
-//     loginUser: PropTypes.func.isRequired,
-//     user: PropTypes.object.isRequired,
-//     UI: PropTypes.object.isRequired
-// };
+    return (
+        <Fragment>
+            <h1>Login</h1>
+            <form onSubmit={event => onSubmit(event)}>
+                <div>
+                    <input 
+                        type="email" 
+                        placeholder="Email Address" 
+                        name="email"
+                        value={email}
+                        onChange={event => onChange(event)}
+                        required
+                    />
+                </div>
+                <div>
+                    <input
+                        type="password"
+                        placeholder="Password"
+                        name="password"
+                        minLength="6"
+                        value={password}
+                        onChange={event => onChange(event)}
+                        required
+                    />
+                </div>
+                <input type="submit" value="Submit" />
+            </form>
+            <p>
+                Don't have an account? <Link to="/signup">Sign up</Link>
+            </p>
+        </Fragment>
+    )
+}
 
-// const mapStateToProps = (state) => ({
-//     user: state.user,
-//     UI: state.UI
-// });
-
-// const mapActionsToProps = {
-//     loginUser
-// }
-
-// export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(Login));
+export default Login;
