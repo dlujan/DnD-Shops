@@ -2,11 +2,12 @@ import React, { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import  { setAlert } from '../actions/alert';
+import  { register } from '../actions/auth';
 import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 
-const Signup = ({ setAlert }) => {
+const Signup = ({ setAlert, register }) => {
     const [formData, setFormData] = useState({
         username: '',
         email: '',
@@ -23,20 +24,21 @@ const Signup = ({ setAlert }) => {
         if (password !== confirmPassword) {
             setAlert('passwords do not match', 'danger');
         } else {
-            const newUser = {
-                email,
-                password,
-                confirmPassword,
-                username
-            }
-            axios.post('https://us-central1-dnd-shops.cloudfunctions.net/api/signup', newUser)
-                .then((res) => {
-                    console.log(res.data);
-                    localStorage.setItem(`FBIdToken`, `Bearer ${res.data.token}`);
-                })
-                .catch((err) => {
-                    console.error(err.response.data)
-                })
+            register({email, password, confirmPassword, username});
+            // const newUser = {
+            //     email,
+            //     password,
+            //     confirmPassword,
+            //     username
+            // }
+            // axios.post('https://us-central1-dnd-shops.cloudfunctions.net/api/signup', newUser)
+            //     .then((res) => {
+            //         console.log(res.data);
+            //         localStorage.setItem(`FBIdToken`, `Bearer ${res.data.token}`);
+            //     })
+            //     .catch((err) => {
+            //         console.error(err.response.data)
+            //     })
         }
     }
 
@@ -52,7 +54,6 @@ const Signup = ({ setAlert }) => {
                         name="username" 
                         value={username} 
                         onChange={event => onChange(event)}
-                        required 
                     />
                 </div>
                 <div>
@@ -62,7 +63,6 @@ const Signup = ({ setAlert }) => {
                         name="email"
                         value={email}
                         onChange={event => onChange(event)}
-                        required
                     />
                 </div>
                 <div>
@@ -73,7 +73,6 @@ const Signup = ({ setAlert }) => {
                         minLength="6"
                         value={password}
                         onChange={event => onChange(event)}
-                        required
                     />
                 </div>
                 <div>
@@ -98,6 +97,7 @@ const Signup = ({ setAlert }) => {
 
 Signup.propTypes = {
     setAlert: PropTypes.func.isRequired,
+    register: PropTypes.func.isRequired,
 };
 
-export default connect(null, { setAlert })(Signup);
+export default connect(null, { setAlert, register })(Signup);

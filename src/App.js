@@ -4,7 +4,6 @@ import Navbar from './components/Navbar';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import Alert from './components/Alert';
-import jwtDecode from 'jwt-decode';
 
 // Redux
 import { Provider } from 'react-redux';
@@ -25,7 +24,6 @@ import Animals from './components/shops/Animals';
 import Custom from './components/Custom';
 
 import './App.css';
-import axios from 'axios';
 
 // const token = localStorage.FBIdToken;
 // if(token) {
