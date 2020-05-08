@@ -25,20 +25,6 @@ const Signup = ({ setAlert, register }) => {
             setAlert('passwords do not match', 'danger');
         } else {
             register({email, password, confirmPassword, username});
-            // const newUser = {
-            //     email,
-            //     password,
-            //     confirmPassword,
-            //     username
-            // }
-            // axios.post('https://us-central1-dnd-shops.cloudfunctions.net/api/signup', newUser)
-            //     .then((res) => {
-            //         console.log(res.data);
-            //         localStorage.setItem(`FBIdToken`, `Bearer ${res.data.token}`);
-            //     })
-            //     .catch((err) => {
-            //         console.error(err.response.data)
-            //     })
         }
     }
 

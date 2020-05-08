@@ -8,6 +8,8 @@ import Alert from './components/Alert';
 // Redux
 import { Provider } from 'react-redux';
 import store from './store';
+import { loadUser } from './actions/auth';
+import setAuthToken from './utils/setAuthToken';
 
 // Components
 import General from './components/shops/General';
@@ -25,18 +27,9 @@ import Custom from './components/Custom';
 
 import './App.css';
 
-// const token = localStorage.FBIdToken;
-// if(token) {
-//   const decodedToken = jwtDecode(token);
-//   if(decodedToken.exp * 1000 < Date.now()){
-//     store.dispatch(logoutUser())
-//     // window.location.href = '/login';
-//   } else {
-//     store.dispatch({ type: SET_AUTHENTICATED });
-//     axios.defaults.headers.common['Authorization'] = token;
-//     store.dispatch(getUserData());
-//   }
-// }
+if (localStorage.token) {
+  setAuthToken(localStorage.token);
+}
 
 class App extends React.Component {
   constructor(props) {
@@ -49,6 +42,8 @@ class App extends React.Component {
   }
 
   async componentDidMount () {
+    store.dispatch(loadUser());
+    
     const url = 'https://us-central1-dnd-shops.cloudfunctions.net/api/shops';
     const response = await fetch(url);
     const data = await response.json();
