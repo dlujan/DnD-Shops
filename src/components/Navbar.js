@@ -116,12 +116,14 @@ const useStyles = makeStyles({
                 <ListItemText primary="Animals" style={listItemTextStyle}/>
               </ListItem>
           </Link>
-          <Link to="/custom" style={drawerLinkStyle}>
+          {isAuthenticated && (
+            <Link to="/custom" style={drawerLinkStyle}>
               <ListItem button key="12">
                 <i className="ra ra-wrench ra-2x"></i>
                 <ListItemText primary="Custom Items" style={listItemTextStyle}/>
               </ListItem>
-          </Link>
+            </Link>
+          )}
         </List>
         <Divider />
       </div>

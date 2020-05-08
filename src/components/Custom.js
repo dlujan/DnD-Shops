@@ -1,6 +1,8 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
-export default class Custom extends Component {
+class Custom extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -9,14 +11,11 @@ export default class Custom extends Component {
         };
       }
 
-      async componentDidMount () {
-        const url = 'https://us-central1-dnd-shops.cloudfunctions.net/api/customItems';
-        const response = await fetch(url);
-        const data = await response.json();
-        this.setState({
-          isLoaded: true,
-          customItems: data
-        });
+      componentDidMount() {
+        this.setState({ 
+          customItems: this.props.customItems,
+          isLoaded: true
+        })
       }
 
     render() {
@@ -44,3 +43,13 @@ export default class Custom extends Component {
         }
     }
 }
+
+Custom.propTypes = {
+  customItems: PropTypes.array.isRequired,
+};
+
+const mapStateToProps = state => ({
+  customItems: state.auth.user.customItems
+});
+
+export default connect(mapStateToProps)(Custom);
