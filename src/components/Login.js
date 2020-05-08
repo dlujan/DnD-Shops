@@ -1,10 +1,10 @@
 import React, { Fragment, useState } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
-
+import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { login } from '../actions/auth';
 
-const Login = () => {
+const Login = ({ login, isAuthenticated }) => {
     const [formData, setFormData] = useState({
         email: '',
         password: ''
@@ -16,18 +16,11 @@ const Login = () => {
 
     const onSubmit = async event => {
         event.preventDefault();
-        const user = {
-            email,
-            password
-        }
-        axios.post('https://us-central1-dnd-shops.cloudfunctions.net/api/login', user)
-            .then((res) => {
-                console.log(res.data);
-                localStorage.setItem(`FBIdToken`, `Bearer ${res.data.token}`);
-            })
-            .catch((err) => {
-                console.error(err.response.data)
-            })
+        login(email, password);
+    };
+
+    if (isAuthenticated) {
+        return <Redirect to="/" />;
     }
 
     return (
@@ -64,4 +57,13 @@ const Login = () => {
     )
 }
 
-export default Login;
+Login.propTypes = {
+    login: PropTypes.func.isRequired,
+    isAuthenticated: PropTypes.bool,
+};
+
+const mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps, { login })(Login);

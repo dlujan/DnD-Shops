@@ -1,13 +1,12 @@
 import React, { Fragment, useState } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
+import { Link, Redirect } from 'react-router-dom';
 import  { setAlert } from '../actions/alert';
 import  { register } from '../actions/auth';
 import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 
-const Signup = ({ setAlert, register }) => {
+const Signup = ({ setAlert, register, isAuthenticated }) => {
     const [formData, setFormData] = useState({
         username: '',
         email: '',
@@ -26,6 +25,10 @@ const Signup = ({ setAlert, register }) => {
         } else {
             register({email, password, confirmPassword, username});
         }
+    }
+
+    if (isAuthenticated) {
+        return <Redirect to="/" />
     }
 
     return (
@@ -84,6 +87,11 @@ const Signup = ({ setAlert, register }) => {
 Signup.propTypes = {
     setAlert: PropTypes.func.isRequired,
     register: PropTypes.func.isRequired,
+    isAuthenticated: PropTypes.bool
 };
 
-export default connect(null, { setAlert, register })(Signup);
+const mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps, { setAlert, register })(Signup);

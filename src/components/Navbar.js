@@ -1,5 +1,8 @@
 import React from 'react';
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { logout } from '../actions/auth';
 
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
@@ -22,7 +25,7 @@ const useStyles = makeStyles({
     },
   });
   
-  export default function Navbar(props) {
+  const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
     const classes = useStyles();
     const [state, setState] = React.useState({
       left: false,
@@ -123,13 +126,13 @@ const useStyles = makeStyles({
         <Divider />
       </div>
     );
-    if (state.isLoggedIn) {
+    if (isAuthenticated) {
         return (
             <div>
             {['left'].map((anchor) => (
             <div style={navStyle} key={anchor}>
                 <Button onClick={toggleDrawer(anchor, true)}>Menu</Button>
-                <div><Link to="/login" style={{ textDecoration: 'none' }}><Button>Logout</Button></Link></div>
+                <Link to="/login" onClick={logout} style={{ textDecoration: 'none' }}><Button>Logout</Button></Link>
                 <SwipeableDrawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)} onOpen={toggleDrawer(anchor, true)}>
                 {list(anchor)}
                 </SwipeableDrawer>
@@ -173,3 +176,14 @@ const useStyles = makeStyles({
  const listItemTextStyle = {
     marginLeft: '0.5rem'
  }
+
+ Navbar.propTypes = {
+   logout: PropTypes.func.isRequired,
+   auth: PropTypes.object.isRequired
+ }
+
+ const mapStateToProps = state => ({
+   auth: state.auth
+ })
+
+ export default connect(mapStateToProps, { logout })(Navbar);
