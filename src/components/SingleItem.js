@@ -1,7 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { deleteItem } from '../actions/item';
+
 import 'rpg-awesome/css/rpg-awesome.min.css';
 import Texture from '../texture.jpg';
-export default function SingleItem(props) {
+
+const SingleItem = (props) => {
 
     const itemStyle = () => {
         return {
@@ -13,6 +18,11 @@ export default function SingleItem(props) {
             backgroundImage: `url(${Texture})`
         }
     }
+    const onSubmit = async event => {
+        event.preventDefault();
+        props.deleteItem(itemId);
+    };
+
     const {
         name,
         category,
@@ -22,7 +32,9 @@ export default function SingleItem(props) {
         damage,
         speed,
         capacity,
-        desc} = props.item;
+        desc,
+        DMnotes,
+        itemId} = props.item;
 
     return (
         <div style={itemStyle()}>
@@ -52,8 +64,24 @@ export default function SingleItem(props) {
             {weight && (
                 <p>Weight: {weight} lbs</p>
             )}
+            {DMnotes && (
+                <p>DM Notes: {DMnotes}</p>
+            )}
+            {itemId && (
+                <div>
+                    <form onSubmit={event => onSubmit(event)}>
+                        <input type="submit" value="Delete"></input>
+                    </form>
+                </div>
+            )}
             {/* ADD A POPUP WITH MORE INFO AND COST ADJUST BUTTONS WHEN YOU CLICK ME */}
             </div>
         </div>
     )
 }
+
+SingleItem.propTypes = {
+    deleteItem: PropTypes.func.isRequired,
+};
+
+export default connect(null, { deleteItem })(SingleItem);

@@ -62,13 +62,13 @@ export const register = ({ email, password, confirmPassword, username }) => asyn
 
 // Login User
 export const login = (email, password) => async dispatch => {
-    const newUser = {
+    const userCredents = {
         email,
         password
     }
 
     try {
-        const res = await axios.post('https://us-central1-dnd-shops.cloudfunctions.net/api/login', newUser);
+        const res = await axios.post('https://us-central1-dnd-shops.cloudfunctions.net/api/login', userCredents);
 
         dispatch({
             type: LOGIN_SUCCESS,

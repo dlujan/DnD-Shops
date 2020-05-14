@@ -37,6 +37,7 @@ class App extends React.Component {
     this.state = {
       isLoaded: false,
       shops: [],
+      customItems: [],
       isLoggedIn: false
     };
   }
@@ -50,7 +51,8 @@ class App extends React.Component {
     
     this.setState({
       isLoaded: true,
-      shops: data
+      shops: data,
+      customItems: this.props.customItems
     });
     
     console.log(this.state.shops);
@@ -111,7 +113,7 @@ class App extends React.Component {
                       <Route exact path="/animals" render={(props) => <Animals {...props}shops={this.state.shops}/>} />
                     </Switch>
                     <Switch>
-                      <Route exact path="/custom" render={(props) => <Custom {...props}shops={this.state.shops}/>} />
+                      <Route exact path="/custom" render={(props) => <Custom {...props}/>} />
                     </Switch>
                   </section>
               </HashRouter>
