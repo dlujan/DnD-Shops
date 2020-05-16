@@ -7,5 +7,5 @@ export const AUTH_ERROR = 'AUTH_ERROR';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const LOGOUT = 'LOGOUT';
-export const NEWITEM_SUCCESS = 'NEWITEM_SUCCESS';
-export const DELETEITEM_SUCCESS = 'DELETEITEM_SUCCESS';
+export const ITEM_CREATED = 'ITEM_CREATED';
+export const ITEM_DELETED = 'ITEM_DELETED';

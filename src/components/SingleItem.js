@@ -13,7 +13,7 @@ const SingleItem = (props) => {
             padding: '10px',
             margin: '10px',
             borderRadius: '3px',
-            boxShadow: '2px 2px 3px #361f11',
+            boxShadow: '1px 1px 3px #361f11',
             textAlign: 'center',
             backgroundImage: `url(${Texture})`
         }

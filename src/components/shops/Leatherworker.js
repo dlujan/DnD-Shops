@@ -16,43 +16,43 @@ export default class Leatherworker extends Component {
         const adventuring_gear = this.state.shop.inventory[2].adventuring_gear;
         const tools = this.state.shop.inventory[3].tools;
 
-        const lightArmor = armor[0];
-        const mediumArmor = armor[1];
-        const shield = armor[2];
+        const lightArmor = armor[0].items;
+        const mediumArmor = armor[1].items;
+        const shield = armor[2].items;
 
-        const simpleRW = weapons[0];
+        const simpleRW = weapons[0].items;
         return (
             <div>
                 <h2>{this.state.shop.name}</h2>
                 <div className="grid-container">
-                    {lightArmor.items.map((item, index) => {
+                    {lightArmor.map((item, index) => {
                         return (
-                            <SingleItem key={index} item={item}/>
+                            <SingleItem key={index} item={item} rpgIcon="ra ra-cracked-helm ra-2x"/>
                         )
                     })}
-                    {mediumArmor.items.map((item, index) => {
+                    {mediumArmor.map((item, index) => {
                         return (
-                            <SingleItem key={index} item={item}/>
+                            <SingleItem key={index} item={item} rpgIcon="ra ra-helmet ra-2x"/>
                         )
                     })}
-                    {shield.items.map((item, index) => {
+                    {shield.map((item, index) => {
                         return (
-                            <SingleItem key={index} item={item}/>
+                            <SingleItem key={index} item={item} rpgIcon="ra ra-round-shield ra-2x"/>
                         )
                     })}
-                    {simpleRW.items.map((item, index) => {
+                    {simpleRW.map((item, index) => {
                         return (
-                            <SingleItem key={index} item={item}/>
+                            <SingleItem key={index} item={item} rpgIcon="ra ra-boomerang ra-2x"/>
                         )
                     })}
                     {adventuring_gear.map((item, index) => {
                         return (
-                            <SingleItem key={index} item={item}/>
+                            <SingleItem key={index} item={item} rpgIcon="ra ra-lantern-flame ra-2x"/>
                         )
                     })}
                     {tools.map((item, index) => {
                         return (
-                            <SingleItem key={index} item={item}/>
+                            <SingleItem key={index} item={item} rpgIcon="ra ra-mining-diamonds ra-2x"/>
                         )
                     })}
                 </div>

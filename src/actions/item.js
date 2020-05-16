@@ -2,8 +2,8 @@ import axios from 'axios';
 import { setAlert } from './alert';
 import { loadUser } from './auth';
 import {
-    NEWITEM_SUCCESS,
-    DELETEITEM_SUCCESS
+    ITEM_CREATED,
+    ITEM_DELETED
 } from './types';
 
 // Create custom item
@@ -21,7 +21,7 @@ export const createItem = ({name, cost, desc, category, weight, DMnotes}) => asy
         const res = await axios.post('https://us-central1-dnd-shops.cloudfunctions.net/api/newItem', newItem);
         
         dispatch({
-            type: NEWITEM_SUCCESS,
+            type: ITEM_CREATED,
             payload: res.data
         });
         dispatch(loadUser());
@@ -37,13 +37,10 @@ export const createItem = ({name, cost, desc, category, weight, DMnotes}) => asy
 export const deleteItem = (itemId) => async dispatch => {
 
     try {
-        // const res = await axios.post(`https://us-central1-dnd-shops.cloudfunctions.net/api/item/${itemId}`);
+        const res = await axios.delete(`https://us-central1-dnd-shops.cloudfunctions.net/api/item/${itemId}`);
         
-        // dispatch({
-        //     type: DELETEITEM_SUCCESS,
-        //     payload: res.data
-        // });
-        console.log(`deleted item with ID of ${itemId}`);
+        dispatch({type: ITEM_DELETED, payload: res.data});
+        dispatch(setAlert('Item Deleted', 'success'));
         dispatch(loadUser());
     } catch (err) {
         const errors = err.response.data;

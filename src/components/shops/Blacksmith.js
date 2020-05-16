@@ -16,55 +16,55 @@ export default class Blacksmith extends Component {
         const adventuring_gear = this.state.shop.inventory[2].adventuring_gear;
         const tools = this.state.shop.inventory[3].tools;
 
-        const lightArmor = armor[0];
-        const mediumArmor = armor[1];
-        const heavyArmor = armor[2];
-        const shield = armor[3];
+        const lightArmor = armor[0].items;
+        const mediumArmor = armor[1].items;
+        const heavyArmor = armor[2].items;
+        const shield = armor[3].items;
 
-        const simpleMW = weapons[0];
-        const martialMW = weapons[1];
+        const simpleMW = weapons[0].items;
+        const martialMW = weapons[1].items;
         return (
             <div>
                 <h2>{this.state.shop.name}</h2>
                 <div className="grid-container">
-                    {lightArmor.items.map((item, index) => {
+                    {lightArmor.map((item, index) => {
                         return (
-                            <SingleItem key={index} item={item}/>
+                            <SingleItem key={index} item={item} rpgIcon="ra ra-cracked-helm ra-2x"/>
                         )
                     })}
-                    {mediumArmor.items.map((item, index) => {
+                    {mediumArmor.map((item, index) => {
                         return (
-                            <SingleItem key={index} item={item}/>
+                            <SingleItem key={index} item={item} rpgIcon="ra ra-helmet ra-2x"/>
                         )
                     })}
-                    {heavyArmor.items.map((item, index) => {
+                    {heavyArmor.map((item, index) => {
                         return (
-                            <SingleItem key={index} item={item}/>
+                            <SingleItem key={index} item={item} rpgIcon="ra ra-knight-helmet ra-2x"/>
                         )
                     })}
-                    {shield.items.map((item, index) => {
+                    {shield.map((item, index) => {
                         return (
-                            <SingleItem key={index} item={item}/>
+                            <SingleItem key={index} item={item} rpgIcon="ra ra-round-shield ra-2x"/>
                         )
                     })}
-                    {simpleMW.items.map((item, index) => {
+                    {simpleMW.map((item, index) => {
                         return (
-                            <SingleItem key={index} item={item}/>
+                            <SingleItem key={index} item={item} rpgIcon="ra ra-sword ra-2x"/>
                         )
                     })}
-                    {martialMW.items.map((item, index) => {
+                    {martialMW.map((item, index) => {
                         return (
-                            <SingleItem key={index} item={item}/>
+                            <SingleItem key={index} item={item} rpgIcon="ra ra-crossed-swords ra-2x"/>
                         )
                     })}
                     {adventuring_gear.map((item, index) => {
                         return (
-                            <SingleItem key={index} item={item}/>
+                            <SingleItem key={index} item={item} rpgIcon="ra ra-lantern-flame ra-2x"/>
                         )
                     })}
                     {tools.map((item, index) => {
                         return (
-                            <SingleItem key={index} item={item}/>
+                            <SingleItem key={index} item={item} rpgIcon="ra ra-mining-diamonds ra-2x"/>
                         )
                     })}
                 </div>
