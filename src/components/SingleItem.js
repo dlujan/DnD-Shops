@@ -1,26 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { deleteItem } from '../actions/item';
 
+import Dialog from '@material-ui/core/Dialog';
 import 'rpg-awesome/css/rpg-awesome.min.css';
-import Texture from '../texture.jpg';
+
+import '../App.css';
 
 const SingleItem = (props) => {
+    const [open, showModal] = useState(false);
 
-    const itemStyle = () => {
-        return {
-            padding: '10px',
-            margin: '10px',
-            borderRadius: '3px',
-            boxShadow: '1px 1px 3px #361f11',
-            textAlign: 'center',
-            backgroundImage: `url(${Texture})`
-        }
-    }
     const onSubmit = async event => {
         event.preventDefault();
-        props.deleteItem(itemId);
+        if (window.confirm("Delete this item?")) {
+            props.deleteItem(itemId);
+        } 
     };
 
     const {
@@ -37,44 +32,101 @@ const SingleItem = (props) => {
         itemId} = props.item;
 
     return (
-        <div style={itemStyle()}>
-            <div style={{textAlign: 'left'}}>
-                <i className={props.rpgIcon}></i>
-            </div>
-            <div>
-            <h4>{name}</h4>
-            <p>Category: {category}</p>
-            <p>Cost: {cost.quantity} {cost.unit}</p>
-            {armor_class && (
-                <p>AC: {armor_class}</p>
-            )}
-            {damage && (
-                <p>Dmg: {damage}</p>
-            )}
-            {speed && (
-                <div>
-                    <p>Speed: {speed}</p>
-                    <p>Cap: {capacity}</p>
-                    {/* If speed exists capacity exists */}
+        <div>
+            <Dialog fullWidth={true} open={open} onClose={() => showModal(false)}>
+                <div style={{background: 'black'}}>
+                    <div className="dialog-container">
+                        <div className="item-name dialog-name">
+                            <h3>{name}</h3>
+                            <p>{category}</p>
+                        </div>
+                        <div className="dialog-costweight">
+                            <div>
+                                <h4>Cost</h4>
+                                <p>{cost.quantity} {cost.unit}</p>
+                            </div>
+                            <div>
+                                <h4>Weight</h4>
+                                {weight ? <p>{weight} lb</p> : <p>--</p>}
+                            </div>
+                        </div>
+                        <div className="dialog-specs">
+                            {armor_class && (
+                                <div>
+                                    <p>This armor has an AC of {armor_class}.</p>
+                                </div>  
+                            )}
+                            {damage && (
+                                <div>
+                                    <p>This weapon does {damage} damage.</p>
+                                </div>
+                            )}
+                            {speed && (
+                                <div>
+                                    <p>Speed {speed} ft, Carrying Capacity {capacity} lbs</p>
+                                    {/* If speed exists capacity exists */}
+                                </div>
+                            )}
+                            {desc && (
+                                <div>
+                                    <p>{desc}</p>
+                                </div>
+                            )}
+                        </div>
+                        {DMnotes && (
+                                <div className="dialog-DM">
+                                    <h4>DM Notes</h4>
+                                    <p>{DMnotes}</p>
+                                </div>
+                            )}
+                    </div>
                 </div>
-            )}
-            {desc && (
-                <p>{desc}</p>
-            )}
-            {weight && (
-                <p>Weight: {weight} lbs</p>
-            )}
-            {DMnotes && (
-                <p>DM Notes: {DMnotes}</p>
-            )}
-            {itemId && (
-                <div>
-                    <form onSubmit={event => onSubmit(event)}>
-                        <input type="submit" value="Delete"></input>
-                    </form>
+            </Dialog>
+            <div className="item-container" onClick={() => showModal(true)}>
+                <div className="item-icon">
+                    <i className={props.rpgIcon}></i>
                 </div>
-            )}
-            {/* ADD A POPUP WITH MORE INFO AND COST ADJUST BUTTONS WHEN YOU CLICK ME */}
+                <div className="item-name">
+                    <h2>{name}</h2>
+                    <p>{category}</p>
+                </div>
+                <div className="item-cost">
+                    <p>{cost.quantity} {cost.unit}</p>
+                </div>
+                <div className="item-weight">
+                    {weight ? <p>{weight} lb</p> : <p>--</p>}
+                </div>
+                <div className="item-specs">
+                    {armor_class && (
+                        <div>
+                            <p>Armor Class: {armor_class}</p>
+                        </div>  
+                    )}
+                    {damage && (
+                        <div>
+                            <p>Damage: {damage}</p>
+                        </div>
+                    )}
+                    {speed && (
+                        <div>
+                            <p>Speed {speed} ft, Carrying Capacity {capacity} lbs</p>
+                            {/* If speed exists capacity exists */}
+                        </div>
+                    )}
+                    {desc && (
+                        <div>
+                            <p>{desc}</p>
+                        </div>
+                    )}
+                </div>
+                {itemId && (
+                    <div>
+                        <form onSubmit={event => onSubmit(event)}>
+                            <input type="submit" value="Delete"></input>
+                        </form>
+                    </div>
+                )}
+                {/* ADD A POPUP WITH MORE INFO AND COST ADJUST BUTTONS WHEN YOU CLICK ME */}
             </div>
         </div>
     )

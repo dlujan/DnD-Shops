@@ -23,7 +23,9 @@ export default class Leatherworker extends Component {
         const simpleRW = weapons[0].items;
         return (
             <div>
-                <h2>{this.state.shop.name}</h2>
+                <div className="title-container">
+                    <h1>{this.state.shop.name}</h1>
+                </div>
                 <div className="grid-container">
                     {lightArmor.map((item, index) => {
                         return (

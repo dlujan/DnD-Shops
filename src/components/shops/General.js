@@ -16,7 +16,9 @@ export default class General extends Component {
         const tools = this.state.shop.inventory[1].tools;
         return (
             <div>
-                <h2>{this.state.shop.name}</h2>
+                <div className="title-container">
+                    <h1>{this.state.shop.name}</h1>
+                </div>
                 <div className="grid-container">
                     {adventuring_gear.map((item, index) => {
                         return (

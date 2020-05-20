@@ -1,12 +1,200 @@
-@import url('https://fonts.googleapis.com/css2?family=Berkshire+Swash&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Marcellus+SC&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alice&display=swap');
 
 body {
   margin: 0;
   /* font-family: 'Berkshire Swash'; */
-  font-family: 'Marcellus SC', sans-serif;
+  /* font-family: 'Marcellus SC', sans-serif; */
+  font-family: 'Alice', serif;
 }
+
+/* MOBILE FIRST STYLING */
+.menu-list {
+  font-family: 'Alice', serif;
+}
+
+.title-container {
+  margin: 30px auto;
+  width: 93%;
+}
+
+.title-container h1 {
+  margin: 0;
+  font-size: 2.2rem;
+  border-bottom: solid black 3px;
+}
+
 .grid-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  /* display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); */
+  width: 93%;
+  margin: 0 auto;
+}
+
+.item-container {
+  display: flex;
+  align-items: center;
+  width: 95%;
+  height: 50px;
+  padding: 10px;
+  margin: 8px auto;
+  border-radius: 3px;
+  box-shadow: 1px 1px 3px #a0a0a0;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.item-container:hover {
+  background: #eee;
+}
+
+.item-icon {
+  padding-right: 12px;
+}
+
+.item-name {
+  width: 100%;
+}
+
+.item-name h2 {
+  color: #000;
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.item-name p {
+  color: rgb(133, 133, 133);
+  margin: 0;
+  font-size: 0.8rem;
+}
+
+.item-cost {
+  width: 30%;
+}
+
+.item-weight {
+  display: none;
+  width: 13%;
+}
+
+.item-specs {
+  display: none;
+  width: 30%;
+}
+
+/* DIALOG STYLES */
+.dialog-container {
+  margin: 15px;
+  height: auto;
+  overflow: hidden;
+  padding: 20px;
+  background: #fff;
+  position: relative;
+}
+
+.dialog-container::before {
+  content: ""; height: 3px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -1px;
+  background-color: black;
+  clip-path: polygon(0% 0%, 5%  100%, 10% 0%, 15%  100%, 20% 0%, 
+  25% 100%, 30% 0%, 35%  100%, 40% 0%, 45%  100%, 50% 0%, 55%  100%, 
+  60% 0%, 65%  100%, 70% 0%, 75%  100%, 80% 0%, 85%  100%, 90% 0%, 
+  95%  100%, 100% 0%);
+}
+
+.dialog-container::after {
+  content: ""; height: 3px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  background-color: black;
+  clip-path: polygon(0% 0%, 5%  100%, 10% 0%, 15%  100%, 20% 0%, 
+  25% 100%, 30% 0%, 35%  100%, 40% 0%, 45%  100%, 50% 0%, 55%  100%, 
+  60% 0%, 65%  100%, 70% 0%, 75%  100%, 80% 0%, 85%  100%, 90% 0%, 
+  95%  100%, 0% 100%);
+}
+
+.dialog-name {
+  text-align: center;
+}
+
+.dialog-name h3 {
+  font-size: 2.4rem;
+  margin: 0;
+}
+
+.dialog-name p {
+  font-size: 1.2rem;
+}
+
+.dialog-costweight {
+  display: flex;
+  justify-content: space-evenly;
+  text-align: center;
+}
+
+.dialog-costweight h4 {
+  margin-bottom: 0.5rem;
+  text-decoration: underline;
+}
+
+.dialog-costweight p {
+  margin: 0;
+}
+
+.dialog-specs {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.dialog-specs p {
+  margin: 0;
+}
+
+.dialog-DM {
+  text-align: center;
+}
+
+.dialog-DM h4 {
+  margin-bottom: 0.5rem;
+  text-decoration: underline;
+}
+
+.dialog-DM p {
+  margin: 0;
+}
+
+/* MEDIA QUERIES - LARGER SCREENS*/
+@media (min-device-width : 768px) {
+  .title-container {
+    width: 78%;
+  }
+
+  .grid-container {
+    width: 80%;
+  }
+
+  .item-name {
+    width: 40%;
+  }
+
+  .item-cost {
+    width: 13%;
+  }
+
+  .item-weight {
+    display: block;
+  }
+
+  .item-specs {
+    display: block;
+  }
+
+  .dialog-name {
+    width: 100%;
+  }
 }

@@ -24,6 +24,7 @@ export const createItem = ({name, cost, desc, category, weight, DMnotes}) => asy
             type: ITEM_CREATED,
             payload: res.data
         });
+        dispatch(setAlert('Item Created', 'success'));
         dispatch(loadUser());
     } catch (err) {
         const errors = err.response.data;

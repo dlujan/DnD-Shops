@@ -20,7 +20,9 @@ export default class Arcane extends Component {
         const simpleMW = weapons[0].items;
         return (
             <div>
-                <h2>{this.state.shop.name}</h2>
+                <div className="title-container">
+                    <h1>{this.state.shop.name}</h1>
+                </div>
                 <div className="grid-container">
                     {simpleMW.map((item, index) => {
                         return (

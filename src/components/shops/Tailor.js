@@ -16,7 +16,9 @@ export default class Tailor extends Component {
         const misc = this.state.shop.inventory[2].misc;
         return (
             <div>
-                <h2>{this.state.shop.name}</h2>
+                <div className="title-container">
+                    <h1>{this.state.shop.name}</h1>
+                </div>
                 <div className="grid-container">
                     {adventuring_gear.map((item, index) => {
                         return (

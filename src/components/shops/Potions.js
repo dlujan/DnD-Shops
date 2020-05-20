@@ -17,7 +17,9 @@ export default class Potions extends Component {
         const magic_items = this.state.shop.inventory[3].magic_items;
         return (
             <div>
-                <h2>{this.state.shop.name}</h2>
+                <div className="title-container">
+                    <h1>{this.state.shop.name}</h1>
+                </div>
                 <div className="grid-container">
                     {adventuring_gear.map((item, index) => {
                         return (

@@ -15,7 +15,9 @@ export default class Animals extends Component {
         const tackanddrawnvehicles = this.state.shop.inventory[1].tackanddrawnvehicles;
         return (
             <div>
-                <h2>{this.state.shop.name}</h2>
+                <div className="title-container">
+                    <h1>{this.state.shop.name}</h1>
+                </div>
                 <div className="grid-container">
                     {mounts.map((item, index) => {
                         return (

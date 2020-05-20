@@ -25,7 +25,9 @@ const Login = ({ login, isAuthenticated }) => {
 
     return (
         <Fragment>
-            <h1>Login</h1>
+            <div>
+                <h1>Login</h1>
+            </div>
             <form onSubmit={event => onSubmit(event)}>
                 <div>
                     <input 

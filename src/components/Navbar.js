@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { logout } from '../actions/auth';
 
 import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
@@ -14,6 +14,9 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 
 import 'rpg-awesome/css/rpg-awesome.min.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSignOutAlt, faStore } from '@fortawesome/free-solid-svg-icons';
+import '../App.css';
 
 
 const useStyles = makeStyles({
@@ -22,10 +25,20 @@ const useStyles = makeStyles({
     },
     fullList: {
       width: 'auto'
-    },
+    }
+  });
+
+  const theme = createMuiTheme({
+    typography: {
+      "fontFamily": `"Alice", serif`,
+      "fontSize": 15,
+      "fontWeightLight": 300,
+      "fontWeightRegular": 400,
+      "fontWeightMedium": 500
+     }
   });
   
-  const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
+  const Navbar = ({ auth: { isAuthenticated, loading, user}, logout }) => {
     const classes = useStyles();
     const [state, setState] = React.useState({
       left: false,
@@ -49,6 +62,7 @@ const useStyles = makeStyles({
         onClick={toggleDrawer(anchor, false)}
         onKeyDown={toggleDrawer(anchor, false)}
       >
+        <MuiThemeProvider theme={theme}>
         <List>
           <Link to="/" style={drawerLinkStyle}>
               <ListItem button key="1">
@@ -125,32 +139,41 @@ const useStyles = makeStyles({
             </Link>
           )}
         </List>
+        </MuiThemeProvider>
         <Divider />
       </div>
     );
     if (isAuthenticated) {
         return (
+          <MuiThemeProvider theme={theme}>
             <div>
             {['left'].map((anchor) => (
             <div style={navStyle} key={anchor}>
-                <Button onClick={toggleDrawer(anchor, true)}>Menu</Button>
-                <Link to="/login" onClick={logout} style={{ textDecoration: 'none' }}><Button>Logout</Button></Link>
+                <Button onClick={toggleDrawer(anchor, true)} style={menuButton}><FontAwesomeIcon icon={faStore}/></Button>
+                <span>DnD Shops!</span>
+                <div style={{display: 'flex', alignItems: 'center'}}>
+                  <span style={{marginRight: '1rem'}}>Hello, {user.credentials.username}</span>
+                  <Link to="/login" onClick={logout} style={{ textDecoration: 'none' }}><Button style={{color: '#fff'}}><FontAwesomeIcon icon={faSignOutAlt}/>Logout</Button></Link>
+                </div>
                 <SwipeableDrawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)} onOpen={toggleDrawer(anchor, true)}>
                 {list(anchor)}
                 </SwipeableDrawer>
             </div>
             ))}
         </div>
+        </MuiThemeProvider>
         )
     } else {
         return (
+          <MuiThemeProvider theme={theme}>
             <div>
                 {['left'].map((anchor) => (
                 <div style={navStyle} key={anchor}>
-                    <Button onClick={toggleDrawer(anchor, true)}>Menu</Button>
+                    <Button onClick={toggleDrawer(anchor, true)} style={menuButton}><FontAwesomeIcon icon={faStore}/></Button>
+                    <span>DnD Shops!</span>
                     <div>
-                        <Link to="/login" style={{ textDecoration: 'none' }}><Button>Login</Button></Link>
-                        <Link to="/signup" style={{ textDecoration: 'none' }}><Button>Signup</Button></Link>
+                        <Link to="/login" style={{ textDecoration: 'none' }}><Button style={{color: '#fff'}}>Login</Button></Link>
+                        <Link to="/signup" style={{ textDecoration: 'none' }}><Button style={{color: '#fff'}}>Signup</Button></Link>
                     </div>
                     <SwipeableDrawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)} onOpen={toggleDrawer(anchor, true)}>
                     {list(anchor)}
@@ -158,6 +181,7 @@ const useStyles = makeStyles({
                 </div>
                 ))}
             </div>
+          </MuiThemeProvider>
         );
     }
   }
@@ -167,7 +191,13 @@ const useStyles = makeStyles({
      justifyContent: 'space-between',
      alignItems: 'center',
      height: '8vh',
-     backgroundColor: '#bf310d'
+     backgroundColor: '#090809',
+     color: '#fff'
+ }
+
+ const menuButton = {
+   color: '#fff',
+   fontSize: '1.5em'
  }
 
  const drawerLinkStyle = {

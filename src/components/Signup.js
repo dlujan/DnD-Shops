@@ -33,7 +33,9 @@ const Signup = ({ setAlert, register, isAuthenticated }) => {
 
     return (
         <Fragment>
-            <h1>Sign Up</h1>
+            <div>
+                <h1>Sign Up</h1>
+            </div>
             <p><i></i> Create Your Account</p>
             <form onSubmit={event => onSubmit(event)}>
                 <div>

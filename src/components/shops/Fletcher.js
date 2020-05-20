@@ -18,7 +18,9 @@ export default class Fletcher extends Component {
         const martialRW = weapons[1].items;
         return (
             <div>
-                <h2>{this.state.shop.name}</h2>
+                <div className="title-container">
+                    <h1>{this.state.shop.name}</h1>
+                </div>
                 <div className="grid-container">
                     {simpleRW.map((item, index) => {
                         return (

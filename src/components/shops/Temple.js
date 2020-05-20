@@ -16,7 +16,9 @@ export default class Temple extends Component {
         const services = this.state.shop.inventory[2].services;
         return (
             <div>
-                <h2>{this.state.shop.name}</h2>
+                <div className="title-container">
+                    <h1>{this.state.shop.name}</h1>
+                </div>
                 <div className="grid-container">
                     {adventuring_gear.map((item, index) => {
                         return (

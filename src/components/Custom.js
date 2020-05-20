@@ -119,7 +119,7 @@ class Custom extends Component {
                 <div>
                     <input 
                         type="text" 
-                        placeholder="Description" 
+                        placeholder="Description (AC/Dmg)" 
                         name="desc" 
                         value={this.state.newItem.desc} 
                         onChange={this.handleChange}
@@ -145,7 +145,9 @@ class Custom extends Component {
                 </div>
                 <input type="submit" value="Submit" />
               </form>
-                <h2>Custom Items</h2>
+              <div className="title-container">
+                <h1>Custom Items</h1>
+              </div>
                 <div className="grid-container">
                     {user.customItems.map(item => {
                         return (
