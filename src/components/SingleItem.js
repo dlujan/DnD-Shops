@@ -13,7 +13,7 @@ const SingleItem = (props) => {
 
     const onSubmit = async event => {
         event.preventDefault();
-        if (window.confirm("Delete this item?")) {
+        if (window.confirm(`Are you sure you want to delete ${name} forever!?`)) {
             props.deleteItem(itemId);
         } 
     };
@@ -74,11 +74,18 @@ const SingleItem = (props) => {
                             )}
                         </div>
                         {DMnotes && (
-                                <div className="dialog-DM">
-                                    <h4>DM Notes</h4>
-                                    <p>{DMnotes}</p>
-                                </div>
-                            )}
+                            <div className="dialog-DM">
+                                <h4>DM Notes</h4>
+                                <p>{DMnotes}</p>
+                            </div>
+                        )}
+                        {itemId && (
+                            <div className="dialog-delete">
+                                <form onSubmit={event => onSubmit(event)}>
+                                    <input className="delete-button" type="submit" value="Delete Item"></input>
+                                </form>
+                            </div>
+                        )}
                     </div>
                 </div>
             </Dialog>
@@ -119,13 +126,6 @@ const SingleItem = (props) => {
                         </div>
                     )}
                 </div>
-                {itemId && (
-                    <div>
-                        <form onSubmit={event => onSubmit(event)}>
-                            <input type="submit" value="Delete"></input>
-                        </form>
-                    </div>
-                )}
                 {/* ADD A POPUP WITH MORE INFO AND COST ADJUST BUTTONS WHEN YOU CLICK ME */}
             </div>
         </div>

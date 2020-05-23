@@ -25,6 +25,7 @@ import Jeweler from './components/shops/Jeweler';
 import Animals from './components/shops/Animals';
 import Custom from './components/Custom';
 
+import gif from './loading.gif';
 import './App.css';
 
 if (localStorage.token) {
@@ -35,10 +36,9 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoaded: false,
+      shopsLoaded: false,
       shops: [],
-      customItems: [],
-      isLoggedIn: false
+      customItems: []
     };
   }
 
@@ -50,7 +50,7 @@ class App extends React.Component {
     const data = await response.json();
     
     this.setState({
-      isLoaded: true,
+      shopsLoaded: true,
       shops: data,
       customItems: this.props.customItems
     });
@@ -60,10 +60,14 @@ class App extends React.Component {
   // Create method for when user logs in, their custom items get loaded into state
   
   render() {
-    const {isLoaded} = this.state;
-
-    if (!isLoaded) {
-      return <div>Loading...</div>
+    const {shopsLoaded} = this.state;
+    
+    if (!shopsLoaded) {
+      return (
+        <div className="loading">
+          <img src={gif} alt="Loading..."/>
+        </div>
+      )
     } else {
         return (
           <Provider store={store}>

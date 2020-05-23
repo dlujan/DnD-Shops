@@ -78,8 +78,10 @@ export const login = (email, password) => async dispatch => {
         dispatch(loadUser());
     } catch (err) {
         const errors = err.response.data;
-        if (errors) {
+        if (err) {
             Object.keys(errors).forEach(error => dispatch(setAlert(errors[error], 'danger')));
+        } else {
+            console.error('Something went wrong.')
         }
         
         dispatch({

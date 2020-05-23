@@ -7,14 +7,61 @@ body {
   /* font-family: 'Marcellus SC', sans-serif; */
   font-family: 'Alice', serif;
 }
+input:focus, textarea:focus, select:focus{
+  outline: none;
+}
 
 /* MOBILE FIRST STYLING */
+
+/* LOADING GIFS */
+.loading {
+  opacity: 0.8;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  z-index: 1000;
+}
+
+.loading img {
+  width: 20%;
+}
+
+/* NAVBAR */
+.nav-logo {
+  background: #ffffff;
+  color: black;
+  padding: 5px;
+  border-radius: 3px;
+  font-size: 1.4rem;
+}
+
+.auth-btn {
+  color: #ffffff;
+  font-size: 1rem;
+}
+
+.username-display {
+  font-size: 1.2rem;
+}
+
+.logout-btn {
+  display: none;
+}
+
+/* ALL ITEMS */
 .menu-list {
   font-family: 'Alice', serif;
 }
 
 .title-container {
-  margin: 30px auto;
+  margin: 0 auto;
+  padding: 30px 0;
   width: 93%;
 }
 
@@ -88,7 +135,7 @@ body {
   height: auto;
   overflow: hidden;
   padding: 20px;
-  background: #fff;
+  background: #ffffff;
   position: relative;
 }
 
@@ -168,8 +215,97 @@ body {
   margin: 0;
 }
 
+.dialog-delete {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.delete-button {
+  margin: 0;
+  width: 25%;
+  border: none;
+  font-size: 0.7em;
+  padding: 6px;
+  background: #991a00;
+  color: #ffffff;
+  font-family: 'Alice';
+  cursor: pointer;
+}
+
+/* LOGIN/SIGNUP/CREATE ITEM FORMS */
+.form-container {
+  text-align: center;
+  margin: 80px 15px;
+  font-size: 1.3rem;
+}
+
+.form-header {
+  font-size: 1.6rem;
+}
+
+.form-input {
+  width: 90%;
+  border: none;
+  border-bottom: solid #575757 2px;
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 0.8em;
+  margin: 0 0 25px;
+  padding-bottom: 10px;
+  font-family: 'Alice';
+}
+
+.form-input:focus {
+  border-bottom: solid #991a00 2px;
+  color: #991a00;
+}
+.form-input:focus::-webkit-input-placeholder {
+  color: #991a00;
+}
+
+.form-button {
+  width: 90%;
+  border: none;
+  font-size: 0.8em;
+  padding: 10px;
+  margin: 0 0 25px;
+  background: #991a00;
+  color: #ffffff;
+  font-family: 'Alice';
+  cursor: pointer;
+}
+
+/* CREATE NEW ITEM */
+.createitem-btn {
+  padding: 5px;
+  font-size: 1.2rem;
+  color: #ffffff;
+  background: #991a00;
+  cursor: pointer;
+}
+
 /* MEDIA QUERIES - LARGER SCREENS*/
 @media (min-device-width : 768px) {
+  /* LOADING GIF */
+  .loading img {
+    width: 7%;
+  }
+  /* NAVBAR */
+  .username-display {
+    margin-right: 15px;
+  }
+
+  .auth-btn {
+    display: block;
+    font-size: 1.2rem;
+    margin-left: 5px;
+    margin-right: 15px;
+  }
+
+  .logout-btn {
+    display: block;
+  }
+
+  /* ITEMS */
   .title-container {
     width: 78%;
   }
@@ -196,5 +332,13 @@ body {
 
   .dialog-name {
     width: 100%;
+  }
+
+  /* FORMS */
+  .form-input {
+    max-width: 450px;
+  }
+  .form-button {
+    max-width: 450px;
   }
 }

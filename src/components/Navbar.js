@@ -16,12 +16,13 @@ import ListItemText from '@material-ui/core/ListItemText';
 import 'rpg-awesome/css/rpg-awesome.min.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignOutAlt, faStore } from '@fortawesome/free-solid-svg-icons';
+import gif from '../loading.gif';
 import '../App.css';
 
 
 const useStyles = makeStyles({
     list: {
-      width: 200
+      width: 300
     },
     fullList: {
       width: 'auto'
@@ -31,7 +32,7 @@ const useStyles = makeStyles({
   const theme = createMuiTheme({
     typography: {
       "fontFamily": `"Alice", serif`,
-      "fontSize": 15,
+      "fontSize": 20,
       "fontWeightLight": 300,
       "fontWeightRegular": 400,
       "fontWeightMedium": 500
@@ -143,17 +144,25 @@ const useStyles = makeStyles({
         <Divider />
       </div>
     );
-    if (isAuthenticated) {
+    if (loading) {
+      return <div className="loading">
+        <img src={gif} alt="Loading..."/>
+      </div>
+    }
+    if (isAuthenticated && !loading && user) {
+      const username = user.credentials.username;
         return (
           <MuiThemeProvider theme={theme}>
             <div>
             {['left'].map((anchor) => (
             <div style={navStyle} key={anchor}>
-                <Button onClick={toggleDrawer(anchor, true)} style={menuButton}><FontAwesomeIcon icon={faStore}/></Button>
-                <span>DnD Shops!</span>
                 <div style={{display: 'flex', alignItems: 'center'}}>
-                  <span style={{marginRight: '1rem'}}>Hello, {user.credentials.username}</span>
-                  <Link to="/login" onClick={logout} style={{ textDecoration: 'none' }}><Button style={{color: '#fff'}}><FontAwesomeIcon icon={faSignOutAlt}/>Logout</Button></Link>
+                  <Button onClick={toggleDrawer(anchor, true)} style={menuButton}><FontAwesomeIcon icon={faStore}/></Button>
+                  <span className="nav-logo">D&D Shops!</span>
+                </div>
+                <div style={{display: 'flex', alignItems: 'center'}}>
+                  <span className="username-display">Hello, {username}</span>
+                  <Link to="/login" onClick={logout} style={{ textDecoration: 'none' }}><Button><FontAwesomeIcon style={{color: '#ffffff', fontSize: '1.7rem'}} icon={faSignOutAlt}/><span className="auth-btn logout-btn">Logout</span></Button></Link>
                 </div>
                 <SwipeableDrawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)} onOpen={toggleDrawer(anchor, true)}>
                 {list(anchor)}
@@ -169,11 +178,13 @@ const useStyles = makeStyles({
             <div>
                 {['left'].map((anchor) => (
                 <div style={navStyle} key={anchor}>
+                  <div style={{display: 'flex', alignItems: 'center'}}>
                     <Button onClick={toggleDrawer(anchor, true)} style={menuButton}><FontAwesomeIcon icon={faStore}/></Button>
-                    <span>DnD Shops!</span>
+                    <span className="nav-logo">D&D Shops!</span>
+                  </div>
                     <div>
-                        <Link to="/login" style={{ textDecoration: 'none' }}><Button style={{color: '#fff'}}>Login</Button></Link>
-                        <Link to="/signup" style={{ textDecoration: 'none' }}><Button style={{color: '#fff'}}>Signup</Button></Link>
+                        <Link to="/login" style={{ textDecoration: 'none' }}><Button><span className="auth-btn">Login</span></Button></Link>
+                        <Link to="/signup" style={{ textDecoration: 'none' }}><Button><span className="auth-btn">Signup</span></Button></Link>
                     </div>
                     <SwipeableDrawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)} onOpen={toggleDrawer(anchor, true)}>
                     {list(anchor)}
@@ -192,11 +203,11 @@ const useStyles = makeStyles({
      alignItems: 'center',
      height: '8vh',
      backgroundColor: '#090809',
-     color: '#fff'
+     color: '#ffffff'
  }
 
  const menuButton = {
-   color: '#fff',
+   color: '#ffffff',
    fontSize: '1.5em'
  }
 
