@@ -283,6 +283,25 @@ input:focus, textarea:focus, select:focus{
   cursor: pointer;
 }
 
+/* ALERT */
+.alert {
+  text-align: center;
+}
+
+.alert-success {
+  color: green;
+}
+
+.alert-danger {
+  color: red;
+}
+
+/* EMPTY CUSTOM ITEMS */
+.empty-state {
+  margin: 100px auto;
+  text-align: center;
+}
+
 /* MEDIA QUERIES - LARGER SCREENS*/
 @media (min-device-width : 768px) {
   /* LOADING GIF */

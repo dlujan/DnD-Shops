@@ -6,6 +6,7 @@ import { createItem } from '../actions/item';
 import SingleItem from './SingleItem';
 
 import Dialog from '@material-ui/core/Dialog';
+import beholder from '../assets/beholder.svg'
 import '../App.css';
 
 class Custom extends Component {
@@ -181,13 +182,22 @@ class Custom extends Component {
                 <h1>Custom Items</h1>
                 <span className="createitem-btn" onClick={this.openDialog}>Create Item</span>
               </div>
+              {user.customItems.length > 0 &&
                 <div className="grid-container">
-                    {user.customItems.map(item => {
-                        return (
-                            <SingleItem key={item.itemId} item={item} color="lightgreen" rpgIcon="ra ra-wrench ra-2x"/>
-                        )
-                    })}
+                  {user.customItems.map(item => {
+                      return (
+                          <SingleItem key={item.itemId} item={item} color="lightgreen" rpgIcon="ra ra-wrench ra-2x"/>
+                      )
+                  })}
                 </div>
+              }
+              {user.customItems.length === 0 &&
+                <div className="empty-state">
+                  <img style={{width: '160px'}}src={beholder} alt="beholder says hi"/>
+                  <h2 style={{fontSize: '1.2em'}}>You don't have any custom items.</h2>
+                  <p style={{fontSize: '1em'}}>Click the Create Item button to get started, DM!</p>
+                </div>
+              }
             </div>
           )
         }

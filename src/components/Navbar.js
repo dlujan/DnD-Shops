@@ -16,7 +16,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import 'rpg-awesome/css/rpg-awesome.min.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignOutAlt, faStore } from '@fortawesome/free-solid-svg-icons';
-import gif from '../loading.gif';
+import gif from '../assets/loading.gif';
 import '../App.css';
 
 

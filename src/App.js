@@ -25,7 +25,7 @@ import Jeweler from './components/shops/Jeweler';
 import Animals from './components/shops/Animals';
 import Custom from './components/Custom';
 
-import gif from './loading.gif';
+import gif from './assets/loading.gif';
 import './App.css';
 
 if (localStorage.token) {
