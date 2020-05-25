@@ -90,6 +90,7 @@ const Signup = ({ setAlert, register, isAuthenticated }) => {
             <p>
                 Already have an account? <Link to="/login">Login</Link>
             </p>
+            <p style={{fontSize: '0.7rem'}}>Created my free logo at <a href="https://my.logomakr.com/">LogoMakr.com</a>.</p>
         </div>
     )
 };

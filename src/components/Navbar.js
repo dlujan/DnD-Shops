@@ -17,6 +17,7 @@ import 'rpg-awesome/css/rpg-awesome.min.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignOutAlt, faStore } from '@fortawesome/free-solid-svg-icons';
 import gif from '../assets/loading.gif';
+import logo from '../assets/logo.png';
 import '../App.css';
 
 
@@ -156,12 +157,13 @@ const useStyles = makeStyles({
             <div>
             {['left'].map((anchor) => (
             <div style={navStyle} key={anchor}>
-                <div style={{display: 'flex', alignItems: 'center'}}>
+                <div style={{display: 'flex', alignItems: 'center', width: '55%'}}>
                   <Button onClick={toggleDrawer(anchor, true)} style={menuButton}><FontAwesomeIcon icon={faStore}/></Button>
-                  <span className="nav-logo">D&D Shops!</span>
+                  {/* <span className="nav-logo">D&D Shops!</span> */}
+                  <img className="app-logo" src={logo} alt="logo"/>
                 </div>
                 <div style={{display: 'flex', alignItems: 'center'}}>
-                  <span className="username-display">Hello, {username}</span>
+                  <span className="username-display">Hi, {username}</span>
                   <Link to="/login" onClick={logout} style={{ textDecoration: 'none' }}><Button><FontAwesomeIcon style={{color: '#ffffff', fontSize: '1.7rem'}} icon={faSignOutAlt}/><span className="auth-btn logout-btn">Logout</span></Button></Link>
                 </div>
                 <SwipeableDrawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)} onOpen={toggleDrawer(anchor, true)}>
@@ -178,9 +180,10 @@ const useStyles = makeStyles({
             <div>
                 {['left'].map((anchor) => (
                 <div style={navStyle} key={anchor}>
-                  <div style={{display: 'flex', alignItems: 'center'}}>
+                  <div style={{display: 'flex', alignItems: 'center', width: '55%'}}>
                     <Button onClick={toggleDrawer(anchor, true)} style={menuButton}><FontAwesomeIcon icon={faStore}/></Button>
-                    <span className="nav-logo">D&D Shops!</span>
+                    {/* <span className="nav-logo">D&D Shops!</span> */}
+                    <img className="app-logo" src={logo} alt="logo"/>
                   </div>
                     <div>
                         <Link to="/login" style={{ textDecoration: 'none' }}><Button><span className="auth-btn">Login</span></Button></Link>

@@ -61,6 +61,7 @@ const Login = ({ login, isAuthenticated }) => {
             <p>
                 Don't have an account? <Link to="/signup">Sign up</Link>
             </p>
+            <p style={{fontSize: '0.7rem'}}>Created my free logo at <a href="https://my.logomakr.com/">LogoMakr.com</a>.</p>
         </div>
     )
 }

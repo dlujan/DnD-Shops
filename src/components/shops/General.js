@@ -17,7 +17,7 @@ export default class General extends Component {
         return (
             <div>
                 <div className="title-container">
-                    <h1>{this.state.shop.name}</h1>
+                    <h1 style={{width: '100%'}}>{this.state.shop.name}</h1>
                 </div>
                 <div className="grid-container">
                     {adventuring_gear.map((item, index) => {

@@ -33,12 +33,17 @@ input:focus, textarea:focus, select:focus{
 }
 
 /* NAVBAR */
-.nav-logo {
+/* .nav-logo {
   background: #ffffff;
   color: black;
   padding: 5px;
   border-radius: 3px;
   font-size: 1.4rem;
+} */
+
+.app-logo {
+  width: 70%;
+  margin-left: -32px;
 }
 
 .auth-btn {
@@ -60,15 +65,16 @@ input:focus, textarea:focus, select:focus{
 }
 
 .title-container {
-  margin: 0 auto;
-  padding: 30px 0;
+  margin: 0 auto 30px;
+  padding-top: 30px;
   width: 93%;
+  border-bottom: solid black 3px;
 }
 
 .title-container h1 {
   margin: 0;
   font-size: 2.2rem;
-  border-bottom: solid black 3px;
+  width: 65%;
 }
 
 .grid-container {
@@ -222,7 +228,7 @@ input:focus, textarea:focus, select:focus{
 
 .delete-button {
   margin: 0;
-  width: 25%;
+  width: 32%;
   border: none;
   font-size: 0.7em;
   padding: 6px;
@@ -230,6 +236,7 @@ input:focus, textarea:focus, select:focus{
   color: #ffffff;
   font-family: 'Alice';
   cursor: pointer;
+  -webkit-appearance: none;
 }
 
 /* LOGIN/SIGNUP/CREATE ITEM FORMS */
@@ -252,6 +259,7 @@ input:focus, textarea:focus, select:focus{
   margin: 0 0 25px;
   padding-bottom: 10px;
   font-family: 'Alice';
+  -webkit-appearance: none;
 }
 
 .form-input:focus {
@@ -272,12 +280,13 @@ input:focus, textarea:focus, select:focus{
   color: #ffffff;
   font-family: 'Alice';
   cursor: pointer;
+  -webkit-appearance: none;
 }
 
 /* CREATE NEW ITEM */
 .createitem-btn {
   padding: 5px;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: #ffffff;
   background: #991a00;
   cursor: pointer;
@@ -309,6 +318,10 @@ input:focus, textarea:focus, select:focus{
     width: 7%;
   }
   /* NAVBAR */
+  .app-logo {
+    width: 25%;
+  }
+
   .username-display {
     margin-right: 15px;
   }
