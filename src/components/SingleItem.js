@@ -63,7 +63,7 @@ const SingleItem = (props) => {
                             )}
                             {speed && (
                                 <div>
-                                    <p>Speed {speed} ft, Carrying Capacity {capacity} lbs</p>
+                                    <p>Speed {speed}, Carrying Capacity {capacity} lbs</p>
                                     {/* If speed exists capacity exists */}
                                 </div>
                             )}
@@ -116,7 +116,7 @@ const SingleItem = (props) => {
                     )}
                     {speed && (
                         <div>
-                            <p>Speed {speed} ft, Carrying Capacity {capacity} lbs</p>
+                            <p>Speed {speed}, Carrying Capacity {capacity} lbs</p>
                             {/* If speed exists capacity exists */}
                         </div>
                     )}

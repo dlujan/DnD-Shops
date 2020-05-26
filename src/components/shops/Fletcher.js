@@ -7,7 +7,7 @@ export default class Fletcher extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            shop: this.props.shops[7]
+            shop: this.props.shops[8]
         }
     }
     render() {

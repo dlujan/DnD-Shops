@@ -7,7 +7,7 @@ export default class Arcane extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            shop: this.props.shops[9]
+            shop: this.props.shops[10]
         }
     }
     render() {

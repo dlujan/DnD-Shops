@@ -8,7 +8,7 @@ export default class General extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            shop: this.props.shops[6]
+            shop: this.props.shops[7]
         }
     }
     render() {

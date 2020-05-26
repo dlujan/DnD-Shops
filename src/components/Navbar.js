@@ -129,7 +129,7 @@ const useStyles = makeStyles({
           <Link to="/animals" style={drawerLinkStyle}>
               <ListItem button key="11">
                 <i className="ra ra-pawprint ra-2x"></i>
-                <ListItemText primary="Animals" style={listItemTextStyle}/>
+                <ListItemText primary="Mounts & Vehicles" style={listItemTextStyle}/>
               </ListItem>
           </Link>
           {isAuthenticated && (

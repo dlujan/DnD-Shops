@@ -148,7 +148,7 @@ class Custom extends Component {
                       <input 
                           className="form-input"
                           type="text" 
-                          placeholder="Description (AC/Dmg)" 
+                          placeholder="Description (AC/Dmg/Speed/Cap)" 
                           name="desc" 
                           value={this.state.newItem.desc} 
                           onChange={this.handleChange}

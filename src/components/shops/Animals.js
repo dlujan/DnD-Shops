@@ -7,12 +7,13 @@ export default class Animals extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            shop: this.props.shops[10]
+            shop: this.props.shops[4]
         }
     }
     render() {
         const mounts = this.state.shop.inventory[0].mounts;
         const tackanddrawnvehicles = this.state.shop.inventory[1].tackanddrawnvehicles;
+        const waterbornevehicles = this.state.shop.inventory[2].waterbornevehicles;
         return (
             <div>
                 <div className="title-container">
@@ -27,6 +28,11 @@ export default class Animals extends Component {
                     {tackanddrawnvehicles.map((item, index) => {
                         return (
                             <SingleItem key={index} item={item} rpgIcon="ra ra-mine-wagon ra-2x"/>
+                        )
+                    })}
+                    {waterbornevehicles.map((item, index) => {
+                        return (
+                            <SingleItem key={index} item={item} rpgIcon="ra ra-anchor ra-2x"/>
                         )
                     })}
                 </div>

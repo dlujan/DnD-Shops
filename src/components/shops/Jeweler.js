@@ -7,7 +7,7 @@ export default class Jeweler extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            shop: this.props.shops[5]
+            shop: this.props.shops[6]
         }
     }
     render() {

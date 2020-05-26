@@ -7,7 +7,7 @@ export default class Leatherworker extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            shop: this.props.shops[4]
+            shop: this.props.shops[5]
         }
     }
     render() {
