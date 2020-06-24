@@ -1,6 +1,7 @@
 import React from 'react';
 import { HashRouter, Switch, Route } from "react-router-dom";
 import Navbar from './components/Navbar';
+import Searchbar from './components/Searchbar';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import Alert from './components/Alert';
@@ -55,7 +56,7 @@ class App extends React.Component {
       customItems: this.props.customItems
     });
     
-    console.log(this.state.shops);
+    // console.log(this.state.shops);
   }
   // Create method for when user logs in, their custom items get loaded into state
   
@@ -74,6 +75,7 @@ class App extends React.Component {
             <HashRouter>
                   <div>
                     <Navbar/>
+                    <Searchbar shops={this.state.shops}/>
                   </div>
                   <section>
                     <Alert />
