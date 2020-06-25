@@ -11,12 +11,35 @@ const Searchbar = (props) => {
         setInput(searchText);
         
         const regex = new RegExp(`^${searchText}`, 'gi');
-        let queried = shops.map(shop => {
+
+        shops.map(shop => {
             return shop.inventory.map(category => {
-                return category.name;
+                 return Object.values(category).map(val => {
+                    if (Array.isArray(val)) { // this gets us the array value. consistent for every shop
+                        let arr = val;
+                        let filtered = arr.filter(function digDeeper(level) { // ISSUE: Not properly digging deep enough to reach weapons and armor items
+                            let result = containsArray(level);
+                            if (result) {
+                                return result.forEach(newLevel => digDeeper(newLevel));
+                            } else {
+                                return level.name.match(regex);
+                            }
+                        })
+                        console.log(filtered)
+                    }
+                })
             })
         })
-        console.log(queried);
+        
+    }
+
+    function containsArray(object) {
+        Object.values(object).map(value => {
+            if (Array.isArray(value)) {
+                return value;
+            }
+        })
+        return false;
     }
     
     return (

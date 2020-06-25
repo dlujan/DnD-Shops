@@ -4,6 +4,8 @@ D&D Shops! is a web application that is meant to help Dungeon Masters quickly fi
 
 Check out the live app [here](https://dnd-shops.web.app)!
 
+This project is made with React.
+
 ## Installation
 
 Simply clone this repository, install dependencies, then run the app.
