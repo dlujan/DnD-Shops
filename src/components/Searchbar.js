@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const Searchbar = (props) => {
-    const [currentItems, updateItems] = useState([]);
+    const [currentItems, updateItems] = useState({filtered: []});
     const [input, setInput] = useState('');
 
     const shops = props.shops;
@@ -11,37 +11,32 @@ const Searchbar = (props) => {
         setInput(searchText);
         
         const regex = new RegExp(`^${searchText}`, 'gi');
+        let filtered = [];
 
-        shops.map(shop => {
-            return shop.inventory.map(category => {
-                 return Object.values(category).map(val => {
-                    if (Array.isArray(val)) { // this gets us the array value. consistent for every shop
+        shops.forEach(shop => {
+            shop.inventory.forEach(category => {
+                 Object.values(category).forEach(val => {
+                    if (Array.isArray(val)) { // This gets us to consistent inventory level for each shop
                         let shelves = val;
                         shelves.forEach(function digDeeper(shelf) {
                             //Check if shelf contains an array | means we have to dig deeper
                             let result = containsArray(shelf);
-                            if (!Array.isArray(result)) {
-                                console.log(shelf.name); // return object if it matches regex
-                            } else if (Array.isArray(result)) {
-                                console.log('We need to dig deeper...');
+                            if (!Array.isArray(result)) { // if it is an object, grab that object if it matches the search query
+                                if (result.name.match(regex) || result.category.match(regex)) {
+                                    filtered.push(result);
+                                }
+                            } else if (Array.isArray(result)) { // if it is an array then dig deeper
+                                result.forEach(newShelf => digDeeper(newShelf));
                             }
                         })
-                        // // filter weapons
-                        // let filtered = arr.filter(function digDeeper(index) { // ISSUE: Not properly digging deep enough to reach weapons and armor items
-                        //     let result = containsArray(index); // is either an array or object
-                        //     if (Array.isArray(result)) {
-                        //         return result.map(newIndex => digDeeper(newIndex));
-                        //     } else {
-                        //         //return result.name.match(regex);
-                        //         return result.name;
-                        //     }
-                        // })
-                        // console.log(filtered)
                     }
                 })
             })
         })
-        
+        if (searchText.length === 0) {
+            filtered = [];
+        }
+        updateItems({ filtered });
     }
 
     function containsArray(object) {
@@ -58,6 +53,11 @@ const Searchbar = (props) => {
         <div>
             Search
             <input type="text" value={input} onChange={event => onChange(event)}/>
+            <div>
+                {currentItems.filtered.map(item => {
+                    return <p>{item.name}</p>
+                })}
+            </div>
         </div>
     )
 }
