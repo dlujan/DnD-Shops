@@ -16,16 +16,27 @@ const Searchbar = (props) => {
             return shop.inventory.map(category => {
                  return Object.values(category).map(val => {
                     if (Array.isArray(val)) { // this gets us the array value. consistent for every shop
-                        let arr = val;
-                        let filtered = arr.filter(function digDeeper(level) { // ISSUE: Not properly digging deep enough to reach weapons and armor items
-                            let result = containsArray(level);
-                            if (result) {
-                                return result.forEach(newLevel => digDeeper(newLevel));
-                            } else {
-                                return level.name.match(regex);
+                        let shelves = val;
+                        shelves.forEach(function digDeeper(shelf) {
+                            //Check if shelf contains an array | means we have to dig deeper
+                            let result = containsArray(shelf);
+                            if (!Array.isArray(result)) {
+                                console.log(shelf.name); // return object if it matches regex
+                            } else if (Array.isArray(result)) {
+                                console.log('We need to dig deeper...');
                             }
                         })
-                        console.log(filtered)
+                        // // filter weapons
+                        // let filtered = arr.filter(function digDeeper(index) { // ISSUE: Not properly digging deep enough to reach weapons and armor items
+                        //     let result = containsArray(index); // is either an array or object
+                        //     if (Array.isArray(result)) {
+                        //         return result.map(newIndex => digDeeper(newIndex));
+                        //     } else {
+                        //         //return result.name.match(regex);
+                        //         return result.name;
+                        //     }
+                        // })
+                        // console.log(filtered)
                     }
                 })
             })
@@ -34,12 +45,13 @@ const Searchbar = (props) => {
     }
 
     function containsArray(object) {
-        Object.values(object).map(value => {
-            if (Array.isArray(value)) {
-                return value;
+        let result = object;
+        Object.keys(object).forEach(key => {
+            if (Array.isArray(object[key])) { // if it ever finds an array it will set result equal to it
+                result = object[key];
             }
         })
-        return false;
+        return result; // result will either be a new array or the original object
     }
     
     return (
