@@ -1,4 +1,8 @@
 import React, { useState } from 'react';
+import SingleItem from './SingleItem';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import '../App.css';
 
 const Searchbar = (props) => {
     const [currentItems, updateItems] = useState({filtered: []});
@@ -51,15 +55,23 @@ const Searchbar = (props) => {
     
     return (
         <div>
-            Search
-            <input type="text" value={input} onChange={event => onChange(event)}/>
-            <div>
+            <div className="grid-container" style={{display: 'flex', justifyContent: 'flex-end', padding: '5px 0'}}>
+                <div style={{display: 'flex', alignItems: 'center'}}>
+                    <input type="text" placeholder="Search..." value={input} onChange={event => onChange(event)}/>
+                    <FontAwesomeIcon icon={faSearch}/>
+                </div>
+            </div>
+            <div className="grid-container" style={{maxHeight: '250px', paddingTop: '5px', overflow: 'scroll', overflowX: 'hidden'}}>
                 {currentItems.filtered.map(item => {
-                    return <p>{item.name}</p>
+                    return <SingleItem item={item}/>
                 })}
             </div>
         </div>
     )
+}
+
+const feedStyle = () => {
+
 }
 
 export default Searchbar;

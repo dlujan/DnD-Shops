@@ -55,10 +55,7 @@ class App extends React.Component {
       shops: data,
       customItems: this.props.customItems
     });
-    
-    // console.log(this.state.shops);
   }
-  // Create method for when user logs in, their custom items get loaded into state
   
   render() {
     const {shopsLoaded} = this.state;
