@@ -7,6 +7,12 @@ body {
   /* font-family: 'Marcellus SC', sans-serif; */
   font-family: 'Alice', serif;
 }
+input, textarea, select {
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
 input:focus, textarea:focus, select:focus{
   outline: none;
 }
