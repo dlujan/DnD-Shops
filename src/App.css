@@ -59,6 +59,19 @@ input:focus, textarea:focus, select:focus{
   display: none;
 }
 
+/* SEARCH BAR */
+.search-bar {
+  border: none;
+  border-bottom: solid 2px #575757;
+}
+.search-bar:focus {
+  border-bottom: solid #991a00 2px;
+  color: #991a00;
+}
+.search-bar:focus::-webkit-input-placeholder {
+  color: #991a00;
+}
+
 /* ALL ITEMS */
 .menu-list {
   font-family: 'Alice', serif;
@@ -66,7 +79,7 @@ input:focus, textarea:focus, select:focus{
 
 .title-container {
   margin: 0 auto 30px;
-  padding-top: 30px;
+  padding-top: 20px;
   width: 93%;
   border-bottom: solid black 3px;
 }

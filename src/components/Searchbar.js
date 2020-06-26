@@ -43,6 +43,7 @@ const Searchbar = (props) => {
         updateItems({ filtered });
     }
 
+    // Helper function for development
     function containsArray(object) {
         let result = object;
         Object.keys(object).forEach(key => {
@@ -52,26 +53,46 @@ const Searchbar = (props) => {
         })
         return result; // result will either be a new array or the original object
     }
+
+    const searchBarStyle = {
+        display: 'flex',
+        alignItems: 'center',
+        maxWidth: '165px',
+        marginLeft: '20px',
+        padding: '5px',
+        paddingLeft: '0',
+        fontSize: '20px'
+    }
+
+    const searchInputStyle = {
+        fontSize: '16px',
+        fontFamily: 'Alice',
+        paddingBottom: '6px',
+        width: '100%'
+    }
+
+    const searchResultsStyle = {
+        maxHeight: '250px',
+        paddingTop: '8px',
+        overflow: 'scroll',
+        overflowX: 'hidden'
+    }
     
     return (
         <div>
-            <div className="grid-container" style={{display: 'flex', justifyContent: 'flex-end', padding: '5px 0'}}>
-                <div style={{display: 'flex', alignItems: 'center'}}>
-                    <input type="text" placeholder="Search..." value={input} onChange={event => onChange(event)}/>
-                    <FontAwesomeIcon icon={faSearch}/>
+            <div style={{display: 'flex', justifyContent: 'flex-start', padding: '5px 0'}}>
+                <div style={searchBarStyle}>
+                    {/* <FontAwesomeIcon icon={faSearch}/> */}
+                    <input className="search-bar" style={searchInputStyle} type="text" placeholder="Search..." value={input} onChange={event => onChange(event)}/>
                 </div>
             </div>
-            <div className="grid-container" style={{maxHeight: '250px', paddingTop: '5px', overflow: 'scroll', overflowX: 'hidden'}}>
+            <div className="grid-container" style={searchResultsStyle}>
                 {currentItems.filtered.map(item => {
                     return <SingleItem item={item}/>
                 })}
             </div>
         </div>
     )
-}
-
-const feedStyle = () => {
-
 }
 
 export default Searchbar;
